@@ -10,6 +10,7 @@ Instala os seguintes softs:
 1. Google Chrome
 1. Spotify
 1. Telegram
+1. Git
 1. Visual Studio Code
 1. Node js
 1. Typescript
