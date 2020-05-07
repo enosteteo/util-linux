@@ -21,3 +21,4 @@ Instala os seguintes softs:
 1. Python3
 1. Docker
 1. Docker-compose
+1. Postman
