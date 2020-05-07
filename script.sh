@@ -48,8 +48,8 @@ sudo npm install -g typescript
 ;
 
 # install protractor
-npm install -g protractor
-webdriver-manager update
+sudo npm install -g protractor
+sudo webdriver-manager update
 
 # install git
 sudo apt install -y git
