@@ -45,8 +45,6 @@ sudo npm install -g typescript
 # install angular/cli
 # sudo npm install -g @angular/cli
 
-;
-
 # install protractor
 sudo npm install -g protractor
 sudo webdriver-manager update
