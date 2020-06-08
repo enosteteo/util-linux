@@ -100,7 +100,7 @@ sudo curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-c
 sudo chmod +x /usr/local/bin/docker-compose
 
 # install python3
-sudo apt-get install -y python3-pip python3-venv libpq-dev python3-dev libapache2-mod-wsgi libssl-dev libffi-dev
+sudo apt-get install -y python3-pip python3-venv libpq-dev python3-dev libapache2-mod-wsgi libssl-dev libffi-dev pipenv
 
 # install postman
 sudo snap install postman
