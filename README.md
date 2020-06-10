@@ -13,18 +13,19 @@ For basic user:
 1. Visual Studio Code
 
 For Developer User
-1. Git
+1. git
+1. asdf
+1. python3
+1. pipenv
 1. Node js
 1. Typescript
 1. Angular/cli
 1. Protractor
-1. Angular/cli
 1. Java JDK 11 (Open JDK)
 1. Maven
 1. Docker
 1. Docker-compose
-1. Python3
-1. Pipenv
+
 1. Postman
 
 
