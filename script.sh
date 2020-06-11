@@ -16,11 +16,11 @@ sudo apt-get install zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)"
 cd ~
-echo "#ZSH config\nzinit light zdharma/fast-syntax-highlighting\nzinit light zsh-users/zsh-autosuggestions\nzinit light zsh-users/zsh-completions\n" >> ./zshrc
+echo "#ZSH config\nzinit light zdharma/fast-syntax-highlighting\nzinit light zsh-users/zsh-autosuggestions\nzinit light zsh-users/zsh-completions\n" >> ./.zshrc
 
 # install theme Starship for terminal
 curl -fsSL https://starship.rs/install.sh | bash
-echo 'eval "$(startship init zsh)"' >> ./zshrc
+echo 'eval "$(startship init zsh)"' >> ./.zshrc
 
 # install Zinit's
 wget https://github.com/Peltoche/lsd/releases/download/0.17.0/lsd_0.17.0_amd64.deb
@@ -69,8 +69,8 @@ sudo apt install -y git
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.7.8
 echo '. $HOME/.asdf/asdf.sh' >> ~/.zshrc
 echo '. $HOME/.asdf/completions/asdf.bash' >> ~/.zshrc
-echo -e 'plugins=(asdf)' >> ~/.zshrc
-echo -e "# append completions to fpath
+echo 'plugins=(asdf)' >> ~/.zshrc
+echo "# append completions to fpath
 fpath=(${ASDF_DIR}/completions $fpath)
 # initialise completions with ZSH's compinit
 autoload -Uz compinit
@@ -121,6 +121,9 @@ curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 sudo apt-get update && sudo apt-get -y install yarn
 
+# atualizar npm
+sudo npm install -g npm
+
 # install typescript
 sudo npm install -g typescript
 
@@ -145,5 +148,9 @@ sudo chmod +x /usr/local/bin/docker-compose
 
 # install postman
 sudo snap install postman
+
+# install postgres
+
+sudo apt -y install postgresql-12 postgresql-contrib postgresql-server-dev-12 redis-server libhiredis-dev memcached libmemcached-dev
 
 # --------------------------------------------------------------
