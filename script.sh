@@ -24,7 +24,7 @@ echo "#ZSH config\nzinit light zdharma/fast-syntax-highlighting\nzinit light zsh
 
 # install theme Starship for terminal
 curl -fsSL https://starship.rs/install.sh | bash
-echo 'eval "$(startship init zsh)"' >> ./.zshrc
+echo 'eval "$(starship init zsh)"' >> ./.zshrc
 
 
 # install Zinit's
@@ -63,9 +63,10 @@ sudo snap install code --classic
 # install IDE - Professional
 # sudo snap install intellij-idea-ultimate --classic --edge
 # sudo snap install pycharm-professional --classic
+# sudo snap install webstorm --classic
 
 # --------------------------------------------------------------
-# DEVELOPER USERS
+# DEVELOPER USERS WITH ASDF
 
 
 # install asdf 
@@ -79,6 +80,8 @@ fpath=(${ASDF_DIR}/completions $fpath)
 autoload -Uz compinit
 compinit" >> ~/.zshrc
 
+# asdf installs
+
 # install ruby
 # asdf plugin-add ruby https://github.com/asdf-vm/asdf-ruby.git
 # asdf install ruby 2.7.1  
@@ -86,20 +89,15 @@ compinit" >> ~/.zshrc
 
 
 # install python
-asdf plugin-add python
-asdf install python 3.8.3
-asdf global python 3.8.3
+# asdf plugin-add python
+# asdf install python 3.8.3
+# asdf global python 3.8.3
 
-pip install -U pip
-pip install pipenv
-echo 'export PIPENV_VENV_IN_PROJECT=1' >> ~/.zshrc
-echo 'export PIPENV_VENV_IN_PROJECT=1' >> ~/.bashrc
-sudo apt-get install -y python3-pip python3-venv libpq-dev python3-dev libapache2-mod-wsgi libssl-nv
 
 # install nodejs
-asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
-asdf install nodejs latest
-asdf global nodejs 14.4.0
+# asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+# asdf install nodejs latest
+# asdf global nodejs 14.4.0
 
 # install golang
 # asdf plugin-add golang https://github.com/kennyp/asdf-golang.git
@@ -118,6 +116,23 @@ asdf global nodejs 14.4.0
 
 # install crystal
 # asdf plugin-add crystal https://github.com/asdf-community/asdf-crystal.git
+
+#-----------------------------------------------------------
+# DEVELOPER USERS WITHOUT ASDF
+
+# install python
+sudo apt install -y python3.8
+
+# install nodejs
+sudo apt install -y nodejs npm
+
+# install pip and pipenv
+sudo apt install python3-pip
+pip install -U pip
+pip install pipenv
+echo 'export PIPENV_VENV_IN_PROJECT=1' >> ~/.zshrc
+echo 'export PIPENV_VENV_IN_PROJECT=1' >> ~/.bashrc
+sudo apt-get install -y python3-venv libpq-dev python3-dev libapache2-mod-wsgi
 
 # install yarn
 curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
@@ -140,20 +155,20 @@ sudo webdriver-manager update
 # install maven
 sudo apt install -y maven
 
-# install docker
-sudo apt install -y docker.io
-sudo systemctl start docker
-sudo systemctl enable docker
+# # install docker
+# sudo apt install -y docker.io
+# sudo systemctl start docker
+# sudo systemctl enable docker
 
 # install docker-compose
-sudo curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
-sudo chmod +x /usr/local/bin/docker-compose
+# sudo curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+# sudo chmod +x /usr/local/bin/docker-compose
 
 # install postman
 sudo snap install postman
 
 # install postgres
 
-sudo apt -y install postgresql-12 postgresql-contrib postgresql-server-dev-12 redis-server libhiredis-dev memcached libmemcached-dev
+# sudo apt -y install postgresql-12 postgresql-contrib postgresql-server-dev-12 redis-server libhiredis-dev memcached libmemcached-dev
 
 # --------------------------------------------------------------
