@@ -7,9 +7,9 @@ sudo apt -y upgrade
 sudo apt install -y snapd
 
 # install essentials
-sudo apt install -y build-essential curl wget tree autoconf m4 libncurses5-dev libssh-dev unixodbc-dev xsltproc fop libxml2-utils libncurses-dev \ 
-libwxgtk3.0-gtk3-dev libgl1-mesa-dev libglu1-mesa-dev libpng-dev make libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev llvm \
-libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev libpq-dev git
+sudo apt install -y build-essential curl wget tree autoconf m4 libncurses5-dev unixodbc-dev xsltproc fop libxml2-utils libncurses-dev \
+ make libreadline-dev libsqlite3-dev llvm \
+ libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev libpq-dev git
 
 # install zsh + oh-my-zsh + basic utils for terminal + Zinit
 sudo apt install -y zsh
