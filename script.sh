@@ -7,30 +7,24 @@ sudo apt -y upgrade
 sudo apt install -y snapd
 
 # install essentials
-sudo apt install -y build-essential curl wget tree autoconf m4 libncurses5-dev libssh-dev unixodbc-dev xsltproc fop libxml2-utils libncurses-dev openjdk-11-jdk
-sudo apt install -y libwxgtk3.0-gtk3-dev libgl1-mesa-dev libglu1-mesa-dev libpng-dev libssh-dev libncurses5-dev libwxgtk3.0-gtk3-dev libgl1-mesa-dev libglu1-mesa-dev libpng-dev 
+sudo apt install -y build-essential curl wget tree autoconf m4 libncurses5-dev libssh-dev unixodbc-dev xsltproc fop libxml2-utils libncurses-dev \ 
+libwxgtk3.0-gtk3-dev libgl1-mesa-dev libglu1-mesa-dev libpng-dev make libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev llvm \
+libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev libpq-dev git
 
-
-# install git
-sudo apt install -y git
-
-# install zsh + oh-my-zsh + basic utils for terminal
+# install zsh + oh-my-zsh + basic utils for terminal + Zinit
 sudo apt install -y zsh
 
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)"
+sh -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh)"
+exec bash
+zinit self-update
 cd ~
 echo "#ZSH config\nzinit light zdharma/fast-syntax-highlighting\nzinit light zsh-users/zsh-autosuggestions\nzinit light zsh-users/zsh-completions\n" >> ./.zshrc
 
 # install theme Starship for terminal
-curl -fsSL https://starship.rs/install.sh | bash
+curl -sS https://starship.rs/install.sh | bash
 echo 'eval "$(starship init zsh)"' >> ./.zshrc
 
-
-# install Zinit's
-wget https://github.com/Peltoche/lsd/releases/download/0.18.0/lsd_0.18.0_amd64.deb
-sudo apt install ./lsd_0.18.0_amd64.deb
-alias ls="lsd"
 
 # monitor de recursos
 # sudo add-apt-repository ppa:bashtop-monitor/bashtop
@@ -43,7 +37,6 @@ alias ls="lsd"
 # install Google Chrome
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo apt install ./google-chrome-stable_current_amd64.deb
-cat /etc/apt/sources.list.d/google-chrome.list
 
 # install spotify
 curl -sS https://download.spotify.com/debian/pubkey.gpg | sudo apt-key add - 
@@ -52,6 +45,9 @@ sudo apt update && sudo apt install -y spotify-client
 
 # install telegram
 sudo snap install telegram-desktop
+
+# install whatsapp
+sudo snap install whatsapp-for-linux
 
 # install editor de txt
 sudo snap install code --classic
@@ -70,105 +66,97 @@ sudo snap install code --classic
 
 
 # install asdf 
-git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.7.8
+
+git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.0
 echo '. $HOME/.asdf/asdf.sh' >> ~/.zshrc
 echo '. $HOME/.asdf/completions/asdf.bash' >> ~/.zshrc
-echo 'plugins=(asdf)' >> ~/.zshrc
-echo "# append completions to fpath
-fpath=(${ASDF_DIR}/completions $fpath)
-# initialise completions with ZSH's compinit
-autoload -Uz compinit
-compinit" >> ~/.zshrc
+echo 'plugins=(asdf)' >> ~/.zshrc\necho "# append completions to fpath\nfpath=(${ASDF_DIR}/completions $fpath)\n# initialise completions with ZSH's compinit\nautoload -Uz compinit\ncompinit" >> ~/.zshrc
 
-# asdf installs
+chsh -s $(which zsh)
+# asdf pluggins-add
 
-# install ruby
-# asdf plugin-add ruby https://github.com/asdf-vm/asdf-ruby.git
-# asdf install ruby 2.7.1  
-# asdf global ruby 2.7.1
-
-
-# install python
-# asdf plugin-add python
-# asdf install python 3.8.3
-# asdf global python 3.8.3
+asdf plugin-add ruby https://github.com/asdf-vm/asdf-ruby.git
+asdf plugin-add python
+asdf plugin-add golang https://github.com/kennyp/asdf-golang.git
+asdf plugin-add rust https://github.com/code-lever/asdf-rust.git
+asdf plugin-add deno https://github.com/asdf-community/asdf-deno.git
+asdf plugin-add java
+asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+asdf plugin-add erlang https://github.com/asdf-vm/asdf-erlang.git
+asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git
+asdf plugin-add kotlin https://github.com/missingcharacter/asdf-kotlin.git
+asdf plugin-add crystal https://github.com/asdf-community/asdf-crystal.git
+asdf plugin-add maven
 
 
-# install nodejs
-# asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
-# asdf install nodejs latest
-# asdf global nodejs 14.4.0
+# asdf install
 
-# install golang
-# asdf plugin-add golang https://github.com/kennyp/asdf-golang.git
+asdf install deno 1.29.1
+asdf install golang 1.19.4
+asdf install java openjdk-19.0.1
+asdf install nodejs lts
+asdf install python 3.11.1
+asdf install ruby 3.1.3
+asdf install rust 1.66
+asdf install maven 3.8.6
 
-# install erlang
-# asdf plugin-add erlang https://github.com/asdf-vm/asdf-erlang.git
+# asdf global
 
-# install elixir
-# asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git
+asdf global java openjdk-19.0.1
+echo ". ~/.asdf/plugins/java/set-java-home.zsh" >> ~/.zshrc
+asdf global deno 1.29.1
+asdf global golang 1.19.4
+asdf global nodejs lts
+asdf global python 3.11.1
+asdf global rust 1.66
+asdf global ruby 3.1.3
+asdf global maven 3.8.6
 
-# install kotlin
-# asdf plugin-add kotlin https://github.com/missingcharacter/asdf-kotlin.git
+# versions
+deno --version
+go version
+javac --version
+java --version
+node --version
+python --version
+ruby --version
+gem --version
+npm --version
+cargo --version
 
-# install rust
-# asdf plugin-add rust https://github.com/code-lever/asdf-rust.git
+# list all asdf 
+asdf current
 
-# install crystal
-# asdf plugin-add crystal https://github.com/asdf-community/asdf-crystal.git
+
 
 #-----------------------------------------------------------
 # DEVELOPER USERS WITHOUT ASDF
 
-# install python
-sudo apt install -y python3.8
-
-# install nodejs
-sudo apt install -y nodejs npm
-
-# install pip and pipenv
-sudo apt install python3-pip
-pip install -U pip
 pip install pipenv
 echo 'export PIPENV_VENV_IN_PROJECT=1' >> ~/.zshrc
 echo 'export PIPENV_VENV_IN_PROJECT=1' >> ~/.bashrc
-sudo apt-get install -y python3-venv libpq-dev python3-dev libapache2-mod-wsgi
 
-# install yarn
-curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-sudo apt-get update && sudo apt-get -y install yarn
+
 
 # atualizar npm
-sudo npm install -g npm
+npm install -g npm
+
+# install yarn
+npm install -g yarn
 
 # install typescript
-sudo npm install -g typescript
-
-# install angular/cli
-sudo npm install -g @angular/cli
-
-# install protractor
-sudo npm install -g protractor
-sudo webdriver-manager update
-
-# install maven
-sudo apt install -y maven
+npm install -g typescript
 
 # # install docker
-# sudo apt install -y docker.io
-# sudo systemctl start docker
-# sudo systemctl enable docker
-
-# install docker-compose
-# sudo curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
-# sudo chmod +x /usr/local/bin/docker-compose
+sudo snap install docker
+sudo groupadd docker
+sudo usermod -aG docker $USER
+newgrp docker
 
 # install postman
-sudo snap install postman
+# sudo snap install postman
 
 # install postgres
-
 # sudo apt -y install postgresql-12 postgresql-contrib postgresql-server-dev-12 redis-server libhiredis-dev memcached libmemcached-dev
 
 # --------------------------------------------------------------
