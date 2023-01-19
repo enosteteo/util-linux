@@ -67,7 +67,7 @@ sudo snap install code --classic
 
 # install asdf 
 
-git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.0
+git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.1
 echo '. $HOME/.asdf/asdf.sh' >> ~/.zshrc
 echo '. $HOME/.asdf/completions/asdf.bash' >> ~/.zshrc
 echo 'plugins=(asdf)' >> ~/.zshrc\necho "# append completions to fpath\nfpath=(${ASDF_DIR}/completions $fpath)\n# initialise completions with ZSH's compinit\nautoload -Uz compinit\ncompinit" >> ~/.zshrc
